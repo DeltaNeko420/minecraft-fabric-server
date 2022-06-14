@@ -1,0 +1,15 @@
+services:
+  server:
+    build:
+      context: .
+      args:
+        - SERVER_JAR_URL=${SERVER_JAR_URL}
+    user: ${UID}:${GID}
+    ports:
+      - ${SERVER_PORT}:25565
+    volumes:
+      - ${SERVER_VOLUME}:/server
+    command: ${SERVER_JVM_ARGS}
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
